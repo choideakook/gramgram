@@ -11,5 +11,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    //-- Security Join --//
+
 
 }
