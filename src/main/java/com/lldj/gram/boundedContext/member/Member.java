@@ -36,6 +36,16 @@ public class Member {
     private LocalDateTime modifyDate;
 
 
+    //-- create method --//
+    protected static Member createMember(String providerTypeCode, String username, String password) {
+        Member member = new Member();
+        member.providerTypeCode = providerTypeCode;
+        member.username = username;
+        member.password = password;
+        return member;
+    }
+
+
     //-- create authorize --//
     public List<? extends GrantedAuthority> getGrantedAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
