@@ -12,9 +12,15 @@
 
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li th:if="${@rq.logout}"><a th:href="@{/member/login}">로그인</a></li>
-                    <li th:if="${@rq.logout}"><a th:href="@{/member/join}">회원가입</a></li>
-                    <li th:if="${@rq.login}"><a th:href="@{/member/logout}">로그아웃</a></li>
+                    <li th:if="${@rq.logout}"><a href="/member/login">로그인</a></li>
+                    <li th:if="${@rq.logout}"><a href="/member/join">회원가입</a></li>
+                    <li><a href="javascript:;"
+                           th:if="${@rq.login}"
+                           onclick="$(this).next().submit();">로그아웃</a></li>
+                    <form th:if="${@rq.login}" hidden
+                          th:action="|/member/logout|"
+                          method="POST"></form>
+
                     <li><a th:href="@{/member/profile}">내 정보</a></li>
                     <li><a>인스타 DI 입력</a></li>
                     <li><a>호감 표시</a></li>
@@ -23,7 +29,8 @@
             </div>
         </div>
         <div class="navbar-center">
-            <a class="btn btn-ghost normal-case text-xl">그램그램</a>
+            <a class="btn btn-ghost normal-case text-xl"
+               th:href="@{/}">그램그램</a>
         </div>
         <div class="navbar-end">
             <button class="btn btn-ghost btn-circle">

@@ -11,13 +11,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = false)
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
-    //-- login , logout url 설정 --//
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
+        http
                 .formLogin(
                         formLogin -> formLogin
                                 .loginPage("/member/login")
@@ -25,7 +23,9 @@ public class SecurityConfig {
                 .logout(
                         logout -> logout
                                 .logoutUrl("/member/logout")
-                ).build();
+                );
+
+        return http.build();
     }
 
     //-- PW encoder 등록 --//

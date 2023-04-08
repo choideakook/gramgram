@@ -16,7 +16,6 @@ import java.util.Enumeration;
 public class HomeController {
 
     @GetMapping("/")
-    @PreAuthorize("isAnonymous()")
     public String home() {
         log.info("홈페이지 요청 확인");
         return "home";
