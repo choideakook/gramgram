@@ -1,0 +1,32 @@
+<form th:fragment="joinForm (memberJoinForm)"
+      th:action th:object="${memberJoinForm}" method="post"
+      class="flex flex-col gap-6"
+      onsubmit="JoinForm__submit(this); return false;">
+
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">아이디</span>
+    </label>
+    <input type="text" th:field="*{username}" name="username" placeholder="아이디" class="input input-bordered" autofocus />
+  </div>
+
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">비빌번호</span>
+    </label>
+    <input type="password" th:field="*{password}" placeholder="비빌번호" class="input input-bordered" />
+  </div>
+
+  <div class="form-control">
+    <label class="label">
+      <span class="label-text">비빌번호 확인</span>
+    </label>
+    <input type="password" th:field="*{password2}" placeholder="비빌번호 확인" class="input input-bordered" />
+  </div>
+
+  <button class="btn btn-block btn-primary gap-1">
+    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+    <span>가입하기</span>
+  </button>
+
+</form>

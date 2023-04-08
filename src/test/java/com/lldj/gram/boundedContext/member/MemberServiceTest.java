@@ -1,6 +1,7 @@
 package com.lldj.gram.boundedContext.member;
 
 import com.lldj.gram.base.request.RsData;
+import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,10 +17,16 @@ class MemberServiceTest {
 
     @Autowired MemberService memberService;
 
+    private Member createMember() {
+        MemberJoinForm form = new MemberJoinForm("User", "1234", "1234");
+
+        RsData<Member> createMember = memberService.join(form);
+        return createMember.getData();
+    }
+
     @Test
     void 회원_객체_생성() {
-        RsData<Member> createMember = memberService.join("User", "1234");
-        Member member = createMember.getData();
+        Member member = createMember();
 
         Optional<Member> byUsername = memberService.findByUsername(member.getUsername());
         assertThat(byUsername.isPresent()).isTrue();
@@ -27,6 +34,8 @@ class MemberServiceTest {
         Member findMember = byUsername.get();
         assertThat(findMember.getProviderTypeCode()).isEqualTo("GRAMGRAM");
         assertThat(findMember.getUsername()).isEqualTo("User");
+        assertThat(findMember.getCreateDate()).isNotNull();
         System.out.println("password = " + findMember.getPassword());
+        System.out.println("create data = " + findMember.getCreateDate());
     }
 }

@@ -1,0 +1,11 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>그램그램</title></head>
+
+<div layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+  <h1>Hello Mother Foucker?</h1>
+  <div th:if="${@rq.login}"
+       th:text="|fuck you fuck ${@rq.member.username}|"></div>
+</div>
+</html>

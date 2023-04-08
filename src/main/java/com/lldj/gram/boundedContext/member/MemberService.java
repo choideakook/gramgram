@@ -1,6 +1,7 @@
 package com.lldj.gram.boundedContext.member;
 
 import com.lldj.gram.base.request.RsData;
+import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,12 @@ public class MemberService {
 
     //-- Security Join --//
     @Transactional
-    public RsData<Member> join(String username, String password) {
-        return Join("GRAMGRAM", username, password);
+    public RsData<Member> join(MemberJoinForm form) {
+
+        if (!form.getPassword().equals(form.getPassword2()))
+            return RsData.of("F-1", "비밀번호가 일치하지 않습니다.");
+
+        return Join("GRAMGRAM", form.getUsername(), form.getPassword());
     }
 
     //-- Social Join --//
@@ -42,5 +47,4 @@ public class MemberService {
 
         return RsData.of("S-1", "회원가입이 완료되었습니다.", member);
     }
-
 }
