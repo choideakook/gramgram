@@ -14,12 +14,12 @@
                     class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li th:if="${@rq.logout}"><a href="/member/login">로그인</a></li>
                     <li th:if="${@rq.logout}"><a href="/member/join">회원가입</a></li>
-                    <li><a href="javascript:;"
-                           th:if="${@rq.login}"
-                           onclick="$(this).next().submit();">로그아웃</a></li>
+
+                    <li><a href="javascript:;" th:if="${@rq.login}"
+                           onclick="$(this).next().submit();">로그아웃</a>
                     <form th:if="${@rq.login}" hidden
-                          th:action="|/member/logout|"
-                          method="POST"></form>
+                          th:action="|/member/logout|" method="POST"></form>
+                    </li>
 
                     <li><a th:href="@{/member/profile}">내 정보</a></li>
                     <li><a>인스타 DI 입력</a></li>
