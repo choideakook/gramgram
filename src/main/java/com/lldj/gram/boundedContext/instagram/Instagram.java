@@ -53,4 +53,19 @@ public class Instagram {
     }
 
     // 호감표시 받은 instagram 생성 //
+    public static Instagram createInstagram(String username) {
+        Instagram instagram = new Instagram();
+        instagram.username = username;
+        instagram.gender = "U";
+        return instagram;
+    }
+
+    //-- business logic --//
+
+    // member 연동 //
+    protected void addMember(Member member, String gender) {
+        this.gender = gender;
+        this.member = member;
+        member.addInstagramName(this.username);
+    }
 }

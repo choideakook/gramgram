@@ -1,0 +1,29 @@
+<form th:fragment="connectForm (connectForm)"
+      th:action th:object="${connectForm}" method="post"
+      class="flex flex-col gap-6"
+      onsubmit="JoinForm__submit(this); return false;">
+
+    <div>
+        <input type="text" th:field="*{username}" placeholder="인스타그램 아이디"
+               class="input input-bordered">
+    </div>
+    <div>
+        <div class="form-control">
+            <label class="label cursor-pointer">
+                <span class="label-text">남자</span>
+                <input type="radio" name="gender" value="M" class="radio focus:bg-red-100">
+            </label>
+        </div>
+        <div class="form-control">
+            <label class="label cursor-pointer">
+                <span class="label-text">여자</span>
+                <input type="radio" name="gender" value="W" class="radio focus:bg-red-100">
+            </label>
+        </div>
+    </div>
+
+    <button class="btn btn-block btn-primary gap-1">
+        <span>연동하기</span>
+    </button>
+
+</form>

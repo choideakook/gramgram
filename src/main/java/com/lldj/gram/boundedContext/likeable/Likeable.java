@@ -35,4 +35,27 @@ public class Likeable {
 
     @ManyToOne(fetch = LAZY)
     private Instagram instagram;
+
+
+    //-- create method --//
+    protected static Likeable createLike(int attractive, Member member, Instagram instagram) {
+        Likeable likeable = new Likeable();
+        likeable.attractive = attractive;
+        likeable.member = member;
+        likeable.instagram = instagram;
+        member.getLikeableList().add(likeable);
+        instagram.getLikeableList().add(likeable);
+        return likeable;
+    }
+
+    //-- business logic --//
+
+    // 매력코드 변환 //
+    public String attractiveMapper() {
+        return switch (this.attractive) {
+            case 1 -> "외모";
+            case 2 -> "성격";
+            default -> "능력";
+        };
+    }
 }

@@ -55,4 +55,14 @@ public class MemberController {
         log.info("로그인 폼 요청 확인");
         return "usr/member/login";
     }
+
+    //-- 프로필 --//
+    @GetMapping("/profile")
+    @PreAuthorize("isAuthenticated()")
+    public String profile() {
+        return "usr/member/profile";
+    }
+
+    //-- 호감 목록 --//
+
 }

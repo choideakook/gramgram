@@ -4,14 +4,14 @@
 
 <main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
 
-  <script th:replace="~{usr/member/fragment/valid :: join}"></script>
+  <script th:replace="~{usr/instagram/fragment/valid :: join}"></script>
 
   <div class="max-w-2xl w-full px-4">
     <h1 class="mb-4">
-      <i class="fa-solid fa-arrow-right-to-bracket"></i>
-      연동 맨
+      인스타그램 연동하기
     </h1>
 
+    <script th:replace="~{usr/instagram/fragment/connectForm :: connectForm(${connectForm})}"></script>
 
   </div>
 
