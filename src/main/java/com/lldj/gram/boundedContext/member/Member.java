@@ -1,7 +1,8 @@
 package com.lldj.gram.boundedContext.member;
 
+import com.lldj.gram.boundedContext.instagram.Instagram;
+import com.lldj.gram.boundedContext.likeable.Likeable;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,12 +30,19 @@ public class Member {
     @Column(unique = true)
     private String username;
     private String password;
+    private String instagramName;
     private String providerTypeCode;
 
     @CreatedDate
     private LocalDateTime createDate;
     @LastModifiedDate
     private LocalDateTime modifyDate;
+
+    @OneToMany(mappedBy = "member")
+    private List<Likeable> likeableList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Instagram> instagramList = new ArrayList<>();
 
 
     //-- create method --//
@@ -45,7 +53,6 @@ public class Member {
         member.password = password;
         return member;
     }
-
 
     //-- create authorize --//
     public List<? extends GrantedAuthority> getGrantedAuthorities() {
