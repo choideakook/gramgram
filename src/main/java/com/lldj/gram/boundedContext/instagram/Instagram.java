@@ -26,7 +26,7 @@ public class Instagram {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String instagramName;
+    private String username;
     private String gender;
     @CreatedDate
     private LocalDateTime createDate;
@@ -38,4 +38,19 @@ public class Instagram {
 
     @OneToMany(mappedBy = "instagram")
     private List<Likeable> likeableList = new ArrayList<>();
+
+
+    //-- create method --//
+
+    // member 연동 instagram 생성 //
+    protected static Instagram createInstagram(String username, String gender, Member member) {
+        Instagram instagram = new Instagram();
+        instagram.username = username;
+        instagram.gender = gender;
+        instagram.member = member;
+        member.addInstagramName(username);
+        return instagram;
+    }
+
+    // 호감표시 받은 instagram 생성 //
 }

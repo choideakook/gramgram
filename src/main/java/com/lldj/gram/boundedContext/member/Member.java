@@ -46,6 +46,8 @@ public class Member {
 
 
     //-- create method --//
+
+    // create member //
     protected static Member createMember(String providerTypeCode, String username, String password) {
         Member member = new Member();
         member.providerTypeCode = providerTypeCode;
@@ -53,6 +55,12 @@ public class Member {
         member.password = password;
         return member;
     }
+
+    // instagram 연동 //
+    public void addInstagramName(String instagramName) {
+        this.instagramName = instagramName;
+    }
+
 
     //-- create authorize --//
     public List<? extends GrantedAuthority> getGrantedAuthorities() {
