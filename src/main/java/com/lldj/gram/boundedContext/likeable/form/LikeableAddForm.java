@@ -7,7 +7,11 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class LikableAddForm {
+public class LikeableAddForm {
+
+    @NotBlank
+    @Size(min = 4, max = 10)
+    private String instagramName;
 
     @NotBlank
     @Size(min = 1, max = 1)

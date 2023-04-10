@@ -5,10 +5,11 @@ import com.lldj.gram.boundedContext.member.MemberService;
 import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-//@Configuration
+@Configuration
 @RequiredArgsConstructor
 public class InitDB {
 

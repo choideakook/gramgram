@@ -1,0 +1,42 @@
+<form th:fragment="addForm (likeableAddForm)"
+      th:action th:object="${likeableAddForm}" method="post"
+      class="flex flex-col gap-6"
+      onsubmit="AddForm__submit(this); return false;">
+
+  <div>
+    당신의 인스타ID : <span class="badge" th:text="${@rq.member.instagramName}"></span>
+  </div>
+
+  <div>
+    <input type="text" th:field="*{instagramName}"
+           autocomplete="off" maxlength="30" placeholder="상대방의 인스타그램 아이디"
+           class="input input-bordered">
+  </div>
+
+  <div>
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">외모</span>
+        <input type="radio" name="attractiveTypeCode" value="1" class="radio focus:bg-red-100">
+      </label>
+    </div>
+
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">성격</span>
+        <input type="radio" name="attractiveTypeCode" value="2" class="radio focus:bg-red-100">
+      </label>
+    </div>
+
+    <div class="form-control">
+      <label class="label cursor-pointer">
+        <span class="label-text">능력</span>
+        <input type="radio" name="attractiveTypeCode" value="3" class="radio focus:bg-red-100">
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <input type="submit" value="호감 표시" class="btn btn-primary">
+  </div>
+</form>
