@@ -33,6 +33,29 @@ class MemberControllerTest {
     @Autowired private MemberService memberService;
 
     @Test
+    void 회원가입_처리() throws Exception {
+        // WHEN
+        ResultActions resultActions = mvc
+                .perform(post("/member/join")
+                .with(csrf())
+                .param("username", "user10")
+                .param("password", "1234")
+                .param("password2", "1234")
+                ).andDo(print());
+
+        // THEN
+        resultActions
+                .andExpect(handler().handlerType(MemberController.class))
+                .andExpect(handler().methodName("join"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrlPattern("/member/login?msg=**"))
+        ;
+
+        Member member = memberService.findByUsername("user10").orElse(null);
+        assertThat(member).isNotNull();
+    }
+
+    @Test
     void 로그인_폼() throws Exception {
         // WHEN
         ResultActions resultActions = mvc

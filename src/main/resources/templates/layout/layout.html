@@ -21,6 +21,8 @@
     <!-- 폰트어썸 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+
+
 </head>
 <body class="min-h-screen flex flex-col max-w-md mx-auto">
 <!-- 데이지 UI 불러오기 -->
@@ -37,7 +39,6 @@
 <main layout:fragment="content" ></main>
 <!-- body 끝 -->
 
-
 <script th:inline="javascript">
     // 타임리프 문법(파라미터, ? 뒤에 입력된 매개변수들)
     const params = /*[[ ${param} ]]*/ null;
@@ -49,17 +50,6 @@
     if (params.errorMsg) {
         toastWarning(params.errorMsg[0]);
     }
-
-    // history.back 에 의해서 돌아온 경우에 실행됨
-    // 평소에도 실행됨
-    $(window).bind("pageshow", function (event) {
-        const localStorageKeyAboutHistoryBackErrorMsg = "historyBackErrorMsg___" + location.href;
-
-        if (localStorage.getItem(localStorageKeyAboutHistoryBackErrorMsg)) {
-            toastWarning(localStorage.getItem(localStorageKeyAboutHistoryBackErrorMsg));
-            localStorage.removeItem(localStorageKeyAboutHistoryBackErrorMsg);
-        }
-    });
 </script>
 
 </body>

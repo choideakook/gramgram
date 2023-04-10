@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.awt.color.ICC_Profile;
 import java.util.Optional;
 
 @Service
@@ -46,7 +45,7 @@ public class MemberService {
         Member member = Member.createMember(providerTypeCode, username, password);
         memberRepository.save(member);
 
-        return RsData.of("S-1", "회원가입이 완료되었습니다.", member);
+        return RsData.of("S-1", "회원가입이 완료되었습니다. \n로그인 해주세요.", member);
     }
 
     // 소셜 로그인(카카오, 구글, 네이버) 로그인이 될 때 마다 실행되는 함수
