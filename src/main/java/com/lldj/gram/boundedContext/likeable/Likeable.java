@@ -24,7 +24,7 @@ public class Likeable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private int attractive; // 1:외모 2:성격 3:능력
+    private String attractive; // 1:외모 2:성격 3:능력
     @CreatedDate
     private LocalDateTime createDate;
     @LastModifiedDate
@@ -40,7 +40,7 @@ public class Likeable {
     //-- create method --//
     protected static Likeable createLike(int attractive, Member member, Instagram instagram) {
         Likeable likeable = new Likeable();
-        likeable.attractive = attractive;
+        likeable.attractiveMapper(attractive);
         likeable.member = member;
         likeable.instagram = instagram;
         member.getLikeableList().add(likeable);
@@ -51,11 +51,11 @@ public class Likeable {
     //-- business logic --//
 
     // 매력코드 변환 //
-    public String attractiveMapper() {
-        return switch (this.attractive) {
-            case 1 -> "외모";
-            case 2 -> "성격";
-            default -> "능력";
+    public String attractiveMapper(Integer attractive) {
+        return switch (attractive) {
+            case 1 -> this.attractive = "외모";
+            case 2 -> this.attractive = "성격";
+            default -> this.attractive = "능력";
         };
     }
 }

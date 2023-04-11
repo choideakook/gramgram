@@ -2,6 +2,7 @@ package com.lldj.gram.base.init;
 
 import com.lldj.gram.base.request.RsData;
 import com.lldj.gram.boundedContext.instagram.InstagramService;
+import com.lldj.gram.boundedContext.likeable.LikeableService;
 import com.lldj.gram.boundedContext.member.Member;
 import com.lldj.gram.boundedContext.member.MemberService;
 import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
@@ -29,6 +30,7 @@ public class InitDB {
 
         private final MemberService memberService;
         private final InstagramService instagramService;
+        private final LikeableService likeableService;
 
         public void dbInit1() {
             MemberJoinForm form1 = new MemberJoinForm("user1", "1234", "1234");
@@ -38,6 +40,9 @@ public class InitDB {
 
             instagramService.connection("instagramA", "M", member1);
             instagramService.connection("instagramB", "W", member2);
+
+            for (int i = 0; i < 5; i++)
+                likeableService.like("attractive" + i, 1, member1);
         }
     }
 }

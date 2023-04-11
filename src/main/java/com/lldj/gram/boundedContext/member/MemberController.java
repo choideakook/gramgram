@@ -58,7 +58,6 @@ public class MemberController {
 
     //-- 프로필 --//
     @GetMapping("/profile")
-    @PreAuthorize("isAuthenticated()")
     public String profile() {
         return "usr/member/profile";
     }

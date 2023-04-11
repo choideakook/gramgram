@@ -9,9 +9,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -51,7 +54,14 @@ public class LikeableController {
     //-- 호감 리스트 --//
     @GetMapping("list")
     @PreAuthorize("isAuthenticated()")
-    public String list() {
+    public String list(Model model) {
+        log.info("호감 리스트 요청 확인");
+
+        Member member = rq.getMember();
+        List<Likeable> likeableList = member.getLikeableList();
+        model.addAttribute("likeableList", likeableList);
+
+        log.info("호감 리스트 전달 완료 likeable list size = {}", likeableList.size());
         return "usr/likeable/list";
     }
 }

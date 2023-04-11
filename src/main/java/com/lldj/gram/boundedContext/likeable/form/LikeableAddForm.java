@@ -16,6 +16,6 @@ public class LikeableAddForm {
     private String instagramName;
 
     @NotNull
-    @Range(max = 1)
+    @Range(min = 0, max = 3)
     private Integer attractive;
 }
