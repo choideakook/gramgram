@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,6 +59,28 @@ public class InstagramService {
             return RsData.successOf(instagrams.get());
 
         return RsData.of("F-1", "존재하지 않는 아이디입니다.");
+    }
+
+    //-- find by id --//
+    public RsData<Instagram> findOne(Long id) {
+        Optional<Instagram> instagrams = instagramRepository.findById(id);
+
+        if (instagrams.isPresent())
+            return RsData.successOf(instagrams.get());
+
+        return RsData.of("F-1", "id 를 찾을 수 없습니다.");
+    }
+
+    //-- member 가 해당 instagram 에 호감을 표시했는지 확인 --//
+    public Long likeableFinder(Member member, Instagram instagram) {
+        List<Likeable> mLikeableList = member.getLikeableList();
+        List<Likeable> iLikeableList = instagram.getLikeableList();
+
+        for (Likeable likeable : mLikeableList)
+            if (iLikeableList.contains(likeable))
+                return likeable.getId();
+
+        return -1L;
     }
 }
 

@@ -8,6 +8,10 @@ spring:
     oauth2:
       client:
         registration:
+          google:
+            client-id: 462383727181-3s7hpffj5n3h5npmkt1tm7gpfe0qjdk8.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile,email
           kakao:
             clientId: 82f9976da017f79e7994cc11fd3bed7f
             scope:
