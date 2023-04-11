@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -46,5 +48,18 @@ public class LikeableService {
     //-- find by id --//
     public Likeable findOne(Long likeableId) {
         return likeableRepository.findById(likeableId).get();
+    }
+
+    //-- delete likeable --//
+    @Transactional
+    public RsData delete(Long id) {
+        Optional<Likeable> byId = likeableRepository.findById(id);
+
+        if (byId.isPresent()) {
+            likeableRepository.delete(byId.get());
+            return RsData.of("S-1", "삭제 성공");
+        }
+
+        return RsData.of("F-1", "존재하지 않는 id 입니다.");
     }
 }

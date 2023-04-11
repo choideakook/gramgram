@@ -13,18 +13,26 @@
 
     <div th:replace="~{usr/instagram/fragment/detailForm :: detailForm(${instagram})}"></div>
 
+
     <div th:if="${@rq.login}"
          class="flex justify-center flex-wrap">
-      <a th:if="${@rq.member.likeableList.contains(likeable)}"
+
+      <a th:if="${likeableId ge 0}"
          class="btn btn-link"
-         href="#">
+         href="javascript:;" onclick="$(this).next().submit(); return confirm('정말로 삭제하시겠습니까?');">
         호감 삭제하기
       </a>
+      <form hidden th:action="@{/likeable/delete/{id}(id=${likeableId})}" method="POST"></form>
 
-      <a th:unless="${@rq.member.likeableList.contains(likeable)}"
+      <a th:if="${likeableId eq -1}"
          class="btn btn-link"
-         href="/likeable/add">
+         th:href="@{/likeable/add(instagramName=${instagram.username})}">
         호감 표시하기
+      </a>
+
+      <a class="btn btn-link"
+         href="/likeable/list">
+        호감 목록
       </a>
     </div>
 

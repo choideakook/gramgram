@@ -53,22 +53,26 @@ public class InstagramController {
     }
 
     //-- 인스타그램 상세페이지 --//
-    @GetMapping("detail/{likeableId}")
+    @GetMapping("detail/{id}")
     public String InstagramDetail(
-            @PathVariable Long likeableId,
+            @PathVariable Long id,
             Model model
     ) {
-        log.info("인스타그램 상세페이지 요청 확인 likeable id = {}", likeableId);
-        Likeable likeable = likeableService.findOne(likeableId);
-        RsData<Instagram> instagramRs = instagramService.findOne(likeable.getInstagram().getId());
+        log.info("인스타그램 상세페이지 요청 확인 instagram id = {}", id);
+        Member member = rq.getMember();
+        RsData<Instagram> instagramRs = instagramService.findOne(id);
 
         if (instagramRs.isFail()){
             log.info("인스타그램 조회 실패 msg = {}", instagramRs.getMsg());
             return rq.historyBack(instagramRs);
         }
 
+        Long likeableId = instagramService.likeableFinder(member, instagramRs.getData());
+
+        model.addAttribute("likeableId", likeableId);
         model.addAttribute("instagram", instagramRs.getData());
-        model.addAttribute("likeable", likeable);
+        log.info("인스타그램 상세페이지 응답 instagram = {}", instagramRs.getData().toString());
         return "usr/instagram/detail";
+
     }
 }
