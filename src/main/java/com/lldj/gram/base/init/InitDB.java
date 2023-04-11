@@ -1,6 +1,8 @@
 package com.lldj.gram.base.init;
 
+import com.lldj.gram.base.request.RsData;
 import com.lldj.gram.boundedContext.instagram.InstagramService;
+import com.lldj.gram.boundedContext.member.Member;
 import com.lldj.gram.boundedContext.member.MemberService;
 import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
 import jakarta.annotation.PostConstruct;
@@ -31,8 +33,11 @@ public class InitDB {
         public void dbInit1() {
             MemberJoinForm form1 = new MemberJoinForm("user1", "1234", "1234");
             MemberJoinForm form2 = new MemberJoinForm("user2", "1234", "1234");
-            memberService.join(form1);
-            memberService.join(form2);
+            Member member1 = memberService.join(form1).getData();
+            Member member2 = memberService.join(form2).getData();
+
+            instagramService.connection("instagramA", "M", member1);
+            instagramService.connection("instagramB", "W", member2);
         }
     }
 }
