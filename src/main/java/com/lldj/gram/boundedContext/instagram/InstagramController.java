@@ -46,7 +46,7 @@ public class InstagramController {
 
         if (instagramRs.isFail()) {
             log.info("연동실패 msg = {}", instagramRs.getMsg());
-            return rq.historyBack(instagramRs);
+            return rq.historyBack(instagramRs.getMsg());
         }
         log.info("인스타 연동 성공 instagram name = {}", form.getUsername());
         return rq.redirectWithMsg("/", instagramRs);

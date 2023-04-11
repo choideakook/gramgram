@@ -1,5 +1,6 @@
 package com.lldj.gram.boundedContext.member;
 
+import com.lldj.gram.base.request.Rq;
 import com.lldj.gram.base.request.RsData;
 import com.lldj.gram.boundedContext.member.form.MemberJoinForm;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +32,7 @@ class MemberControllerTest {
 
     @Autowired private MockMvc mvc;
     @Autowired private MemberService memberService;
+    @Autowired private Rq rq;
 
     @Test
     void 회원가입_처리() throws Exception {
@@ -107,5 +109,6 @@ class MemberControllerTest {
         resultActions
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrlPattern("/**"));
+
     }
 }

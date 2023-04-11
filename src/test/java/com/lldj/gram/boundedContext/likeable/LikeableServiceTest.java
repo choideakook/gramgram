@@ -49,7 +49,7 @@ class LikeableServiceTest {
         Likeable likeable = likeableRs.getData();
 
         assertThat(likeableRs.getResultCode()).isEqualTo("S-1");
-        assertThat(likeable.getAttractive()).isEqualTo(1);
+        assertThat(likeable.getAttractive()).isEqualTo("외모");
         assertThat(likeable.getMember()).isSameAs(member1);
         assertThat(likeable.getMember().getInstagramName()).isEqualTo(instagram1.getUsername());
         assertThat(likeable.getMember().getUsername()).isSameAs("user1");

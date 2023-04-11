@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class InitDB {
 
