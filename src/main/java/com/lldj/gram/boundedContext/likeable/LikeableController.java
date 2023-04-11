@@ -19,7 +19,7 @@ public class LikeableController {
     //-- 호감 등록 폼 --//
     @GetMapping("/add")
     @PreAuthorize("isAuthenticated()")
-    public String addLike() {
+    public String addLike(LikeableAddForm form) {
         log.info("호감 등록 폼 요청 확인");
         return "usr/likeable/add";
     }

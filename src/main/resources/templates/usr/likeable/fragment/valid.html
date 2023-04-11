@@ -1,7 +1,7 @@
 <script th:fragment="valid"
   th:inline="javascript">
 
-  const myInstaMember = /*[[ ${@rq.member.instaMember} ]]*/ null;
+  const myInstagram = /*[[ ${@rq.member.instagramName} ]]*/ null;
 
   function AddForm__submit(form) {
     // username 이(가) 올바른지 체크
@@ -20,13 +20,13 @@
       return;
     }
 
-    if (form.username.value == myInstaMember.username) {
+    if (form.username.value == myInstagram.username) {
       toastWarning('본인을 호감상대로 등록할 수 없습니다.');
       form.username.focus();
       return;
     }
 
-    const $checkedAttractiveTypeCodeRadioButton = $(form).find("[name=attractiveTypeCode]:checked");
+    const $checkedAttractiveTypeCodeRadioButton = $(form).find("[name=attractive]:checked");
 
     if ($checkedAttractiveTypeCodeRadioButton.length == 0) {
       toastWarning('상대방의 매력포인트를 선택해주세요.');

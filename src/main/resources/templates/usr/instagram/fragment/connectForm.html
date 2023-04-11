@@ -3,27 +3,39 @@
       class="flex flex-col gap-6"
       onsubmit="JoinForm__submit(this); return false;">
 
-    <div>
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">인스타그램 아이디</span>
+        </label>
         <input type="text" th:field="*{username}" placeholder="인스타그램 아이디"
-               class="input input-bordered">
+               class="input input-bordered" autofocus>
     </div>
-    <div>
-        <div class="form-control">
-            <label class="label cursor-pointer">
-                <span class="label-text">남자</span>
-                <input type="radio" name="gender" value="M" class="radio focus:bg-red-100">
-            </label>
-        </div>
-        <div class="form-control">
-            <label class="label cursor-pointer">
-                <span class="label-text">여자</span>
-                <input type="radio" name="gender" value="W" class="radio focus:bg-red-100">
-            </label>
-        </div>
+
+    <span class="label-text">성별</span>
+
+    <div class="flex justify-center gap-6">
+        <label>
+            <span class="flex center gap-1">
+                  <i class="fa-solid fa-venus"></i>
+                  여성
+                  <input type="radio" name="gender" value="W" class="radio"/>
+            </span>
+        </label>
+
+        <label>
+            <span class="flex center gap-1">
+              <i class="fa-solid fa-mars"></i>
+              남성
+              <input type="radio" name="gender" value="M" class="radio"/>
+            </span>
+        </label>
     </div>
 
     <button class="btn btn-block btn-primary gap-1">
-        <span>연동하기</span>
+        <span>
+            <i class="fa-brands fa-instagram"></i>
+            인증하기
+        </span>
     </button>
 
 </form>

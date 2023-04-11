@@ -15,5 +15,5 @@ public class LikeableAddForm {
 
     @NotBlank
     @Size(min = 1, max = 1)
-    private int attractive;
+    private Integer attractive;
 }
