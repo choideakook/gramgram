@@ -53,7 +53,8 @@ public class MemberService {
     public RsData<Member> whenSocialLogin(String providerTypeCode, String username) {
         Optional<Member> opMember = findByUsername(username); // username 예시 : KAKAO__1312319038130912, NAVER__1230812300
 
-        if (opMember.isPresent()) return RsData.of("S-2", "로그인 되었습니다.", opMember.get());
+        if (opMember.isPresent())
+            return RsData.of("S-2", "로그인 되었습니다.", opMember.get());
 
         // 소셜 로그인를 통한 가입시 비번은 없다.
         return join(providerTypeCode, username, ""); // 최초 로그인 시 딱 한번 실행

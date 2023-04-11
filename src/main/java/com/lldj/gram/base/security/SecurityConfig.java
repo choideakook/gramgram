@@ -15,16 +15,19 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        return http
                 .formLogin(
                         formLogin -> formLogin
+                                .loginPage("/member/login")
+                )
+                .oauth2Login(  // 소셜 로그인
+                        oauth2Login -> oauth2Login
                                 .loginPage("/member/login")
                 )
                 .logout(
                         logout -> logout
                                 .logoutUrl("/member/logout")
-                );
-        return http.build();
+                ).build();
     }
 
     //-- PW encoder 등록 --//
