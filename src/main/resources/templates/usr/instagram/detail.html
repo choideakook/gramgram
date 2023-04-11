@@ -1,0 +1,41 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>instagram profile</title></head>
+
+<main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+
+  <div class="max-w-2xl w-full px-4">
+    <h1 class="mb-4">
+      <i class="fa-brands fa-instagram"></i>
+      인스타그램 상세 정보
+    </h1>
+
+    <div th:replace="~{usr/instagram/fragment/detailForm :: detailForm(${instagram})}"></div>
+
+    <div th:if="${@rq.login}"
+         class="flex justify-center flex-wrap">
+      <a th:if="${@rq.member.likeableList.contains(likeable)}"
+         class="btn btn-link"
+         href="#">
+        호감 삭제하기
+      </a>
+
+      <a th:unless="${@rq.member.likeableList.contains(likeable)}"
+         class="btn btn-link"
+         href="/likeable/add">
+        호감 표시하기
+      </a>
+    </div>
+
+    <div th:if="${@rq.logout}" class="flex justify-center flex-wrap">
+      <a class="btn btn-link"
+         href="/member/login">
+        호감 표시하기
+      </a>
+    </div>
+
+  </div>
+
+</main>
+</html>

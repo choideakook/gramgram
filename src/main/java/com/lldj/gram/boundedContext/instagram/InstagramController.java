@@ -3,13 +3,17 @@ package com.lldj.gram.boundedContext.instagram;
 import com.lldj.gram.base.request.Rq;
 import com.lldj.gram.base.request.RsData;
 import com.lldj.gram.boundedContext.instagram.form.ConnectForm;
+import com.lldj.gram.boundedContext.likeable.Likeable;
+import com.lldj.gram.boundedContext.likeable.LikeableService;
 import com.lldj.gram.boundedContext.member.Member;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InstagramController {
 
     private final InstagramService instagramService;
+    private final LikeableService likeableService;
     private final Rq rq;
 
     //-- 인스타 연동 폼 --//
@@ -45,5 +50,25 @@ public class InstagramController {
         }
         log.info("인스타 연동 성공 instagram name = {}", form.getUsername());
         return rq.redirectWithMsg("/", instagramRs);
+    }
+
+    //-- 인스타그램 상세페이지 --//
+    @GetMapping("detail/{likeableId}")
+    public String InstagramDetail(
+            @PathVariable Long likeableId,
+            Model model
+    ) {
+        log.info("인스타그램 상세페이지 요청 확인 likeable id = {}", likeableId);
+        Likeable likeable = likeableService.findOne(likeableId);
+        RsData<Instagram> instagramRs = instagramService.findOne(likeable.getInstagram().getId());
+
+        if (instagramRs.isFail()){
+            log.info("인스타그램 조회 실패 msg = {}", instagramRs.getMsg());
+            return rq.historyBack(instagramRs);
+        }
+
+        model.addAttribute("instagram", instagramRs.getData());
+        model.addAttribute("likeable", likeable);
+        return "usr/instagram/detail";
     }
 }

@@ -59,6 +59,16 @@ public class InstagramService {
 
         return RsData.of("F-1", "존재하지 않는 아이디입니다.");
     }
+
+    //-- find by id --//
+    public RsData<Instagram> findOne(Long id) {
+        Optional<Instagram> instagrams = instagramRepository.findById(id);
+
+        if (instagrams.isPresent())
+            return RsData.successOf(instagrams.get());
+
+        return RsData.of("F-1", "id 를 찾을 수 없습니다.");
+    }
 }
 
 

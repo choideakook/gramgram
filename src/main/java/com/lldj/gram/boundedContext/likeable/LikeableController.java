@@ -64,4 +64,5 @@ public class LikeableController {
         log.info("호감 리스트 전달 완료 likeable list size = {}", likeableList.size());
         return "usr/likeable/list";
     }
+
 }

@@ -42,4 +42,9 @@ public class LikeableService {
         Likeable saveLikable = likeableRepository.save(likeable);
         return RsData.of("S-1", "호감표시가 완료되었습니다.", saveLikable);
     }
+
+    //-- find by id --//
+    public Likeable findOne(Long likeableId) {
+        return likeableRepository.findById(likeableId).get();
+    }
 }
