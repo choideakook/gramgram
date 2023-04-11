@@ -8,21 +8,21 @@
 
     form.username.value = form.username.value.trim(); // 입력란의 입력값에 있을지 모르는 좌우공백제거
 
-    if (form.instagramName.value.length == 0) {
+    if (form.username.value.length == 0) {
       toastWarning('상대방의 인스타그램 아이디를 입력해주세요.');
-      form.instagramName.focus();
+      form.username.focus();
       return;
     }
 
-    if (form.instagramName.value.length < 4) {
+    if (form.username.value.length < 4) {
       toastWarning('상대방의 인스타그램 아이디를 4자 이상 입력해주세요.');
-      form.instagramName.focus();
+      form.username.focus();
       return;
     }
 
-    if (form.instagramName.value == myInstagram.username) {
+    if (form.username.value == myInstagram.username) {
       toastWarning('본인을 호감상대로 등록할 수 없습니다.');
-      form.instagramName.focus();
+      form.username.focus();
       return;
     }
 

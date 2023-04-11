@@ -44,7 +44,6 @@ public class Likeable {
         likeable.member = member;
         likeable.instagram = instagram;
         member.getLikeableList().add(likeable);
-        member.getInstagramList().add(instagram);
         instagram.getLikeableList().add(likeable);
         return likeable;
     }

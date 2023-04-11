@@ -2,7 +2,6 @@ package com.lldj.gram.boundedContext.likeable;
 
 import com.lldj.gram.base.request.Rq;
 import com.lldj.gram.base.request.RsData;
-import com.lldj.gram.boundedContext.instagram.Instagram;
 import com.lldj.gram.boundedContext.likeable.form.LikeableAddForm;
 import com.lldj.gram.boundedContext.member.Member;
 import jakarta.validation.Valid;
@@ -12,7 +11,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -65,22 +63,5 @@ public class LikeableController {
 
         log.info("호감 리스트 전달 완료 likeable list size = {}", likeableList.size());
         return "usr/likeable/list";
-    }
-
-    //-- 호감 삭제 --//
-    @PostMapping("delete/{id}")
-    @PreAuthorize("isAuthenticated()")
-    public String delete(@PathVariable Long id) {
-        log.info("호감 삭제 요청 확인 likeable id = {}", id);
-        Instagram instagram = likeableService.findOne(id).getInstagram();
-        RsData deleteRs = likeableService.delete(id);
-
-        if (deleteRs.isFail()) {
-            log.info("삭제 실패 msg = {}", deleteRs.getMsg());
-            return rq.historyBack(deleteRs.getMsg());
-        }
-
-        log.info("호감삭제 성공");
-        return rq.redirectWithMsg("/instagram/detail/" + instagram.getId(), deleteRs.getMsg());
     }
 }
