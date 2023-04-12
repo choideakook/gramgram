@@ -46,7 +46,7 @@ public class LikeableController {
         Member member = rq.getMember();
 
         // 중복 호감표시 검사 (false = 중복)
-        boolean check = likeableService.duplicateInvalid(member.getInstagramList(), form.getInstagramName());
+        boolean check = likeableService.duplicateInvalid(member.getLikeableList(), form.getInstagramName());
         // 중복 호감표시 할 경우 수정으로 redirect
         if (check == false) {
             log.info("중복 호감표시가 확인됨 instagram name = {}", form.getInstagramName());

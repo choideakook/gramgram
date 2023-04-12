@@ -37,7 +37,7 @@ public class InstagramService {
     private static RsData<Instagram> connection(Member member, Optional<Instagram> instagrams, String gender) {
         Instagram instagram = instagrams.get();
 
-        if (instagram.getMember() == null) {
+        if (instagram.getMemberName() == null) {
             instagram.addMember(member, gender);
             return RsData.of("S-1", "instagram 아이디가 연동되었습니다.", instagram);
         }else

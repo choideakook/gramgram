@@ -68,13 +68,13 @@ class InstagramServiceTest {
 
         assertThat(member1.getLikeableList().contains(likeable)).isTrue();
         assertThat(likeable.getInstagram().getGender()).isEqualTo("U");
-        assertThat(likeable.getInstagram().getMember()).isNull();
+        assertThat(likeable.getInstagram().getMemberName()).isNull();
 
         Member member2 = createMember("user2");
         instagramService.connection("instagra2", "M", member2);
 
         assertThat(member1.getLikeableList().contains(likeable)).isTrue();
         assertThat(likeable.getInstagram().getGender()).isEqualTo("M");
-        assertThat(likeable.getInstagram().getMember()).isSameAs(member2);
+        assertThat(likeable.getInstagram().getMemberName()).isEqualTo("user2");
     }
 }

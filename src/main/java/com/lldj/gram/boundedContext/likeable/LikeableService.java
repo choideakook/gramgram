@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +66,11 @@ public class LikeableService {
     }
 
     //-- 중복 호감 여부 확인 --//
-    public boolean duplicateInvalid(List<Instagram> instagramList, String instagramName) {
+    public boolean duplicateInvalid(List<Likeable> likeableList, String instagramName) {
+        List<Instagram> instagramList = new ArrayList<>();
+        for (Likeable likeable : likeableList)
+            instagramList.add(likeable.getInstagram());
+
         for (Instagram instagram : instagramList)
             if (instagram.getUsername().equals(instagramName))
                 return false;

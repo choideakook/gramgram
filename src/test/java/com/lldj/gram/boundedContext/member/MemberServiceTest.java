@@ -43,21 +43,21 @@ class MemberServiceTest {
         System.out.println("create data = " + findMember.getCreateDate());
     }
 
-    @Test
-    void initDB_테스트() {
-        Member member = memberService.findByUsername("user1").get();
-
-        List<Instagram> instagramList = member.getInstagramList();
-        List<Likeable> likeableList = member.getLikeableList();
-
-        System.out.println("== 호감을 표시한 instagram 목록 ==");
-        for (Instagram instagram : instagramList) {
-            System.out.println(instagram.getUsername() + "\n");
-        }
-
-        System.out.println("\n== 호감을 표시한 likeable 목록 ==");
-        for (Likeable likeable : likeableList) {
-            System.out.println(likeable.getAttractive() + "\n");
-        }
-    }
+//    @Test
+//    void initDB_테스트() {
+//        Member member = memberService.findByUsername("user1").get();
+//
+//        List<Instagram> instagramList = member.getInstagramList();
+//        List<Likeable> likeableList = member.getLikeableList();
+//
+//        System.out.println("== 호감을 표시한 instagram 목록 ==");
+//        for (Instagram instagram : instagramList) {
+//            System.out.println(instagram.getUsername() + "\n");
+//        }
+//
+//        System.out.println("\n== 호감을 표시한 likeable 목록 ==");
+//        for (Likeable likeable : likeableList) {
+//            System.out.println(likeable.getAttractive() + "\n");
+//        }
+//    }
 }

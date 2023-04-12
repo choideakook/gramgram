@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -28,13 +27,11 @@ public class Instagram {
     private Long id;
     private String username;
     private String gender;
+    private String memberName;
     @CreatedDate
     private LocalDateTime createDate;
     @LastModifiedDate
     private LocalDateTime modifyDate;
-
-    @ManyToOne(fetch = LAZY)
-    private Member member;
 
     @OneToMany(mappedBy = "instagram")
     private List<Likeable> likeableList = new ArrayList<>();
@@ -47,7 +44,7 @@ public class Instagram {
         Instagram instagram = new Instagram();
         instagram.username = username;
         instagram.gender = gender;
-        instagram.member = member;
+        instagram.memberName = member.getUsername();
         member.addInstagramName(username);
         return instagram;
     }
@@ -65,7 +62,7 @@ public class Instagram {
     // member 연동 //
     protected void addMember(Member member, String gender) {
         this.gender = gender;
-        this.member = member;
+        this.memberName = member.getUsername();
         member.addInstagramName(this.username);
     }
 }

@@ -34,12 +34,12 @@
                 <dt class="text-sm font-medium text-gray-500">
                     GRAMGRAM 아이디
                 </dt>
-                <dd th:if="${instagram.member ne null}"
+                <dd th:if="${instagram.memberName ne null}"
                     class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
-                    th:text="${instagram.member.username}">
+                    th:text="${instagram.memberName}">
                 </dd>
 
-                <dd th:if="${instagram.member eq null}"
+                <dd th:if="${instagram.memberName eq null}"
                     class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
                     th:text="|연동된 아이디가 없습니다.|">
                 </dd>

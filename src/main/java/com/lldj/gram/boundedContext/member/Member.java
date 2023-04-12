@@ -41,9 +41,6 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Likeable> likeableList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
-    private List<Instagram> instagramList = new ArrayList<>();
-
 
     //-- create method --//
 
