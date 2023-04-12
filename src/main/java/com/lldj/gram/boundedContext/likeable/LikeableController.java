@@ -52,7 +52,7 @@ public class LikeableController {
             log.info("중복 호감표시가 확인됨 instagram name = {}", form.getInstagramName());
             Instagram instagram = instagramService.findByName(form.getInstagramName()).getData();
             Long likeableId = instagramService.likeableFinder(member, instagram);
-            return "redirect:/likeable/update" + likeableId;
+            return String.format("redirect:/likeable/update/%s?attractive=%s", likeableId, form.getAttractive());
         }
 
         // 호감 생성
@@ -69,7 +69,7 @@ public class LikeableController {
     }
 
     //-- 호감 리스트 --//
-    @GetMapping("list")
+    @GetMapping("/list")
     @PreAuthorize("isAuthenticated()")
     public String list(Model model) {
         log.info("호감 리스트 요청 확인");
@@ -82,8 +82,8 @@ public class LikeableController {
         return "usr/likeable/list";
     }
 
-    //-- 호감 수정 폼 --//
-    @PostMapping("update/{id}")
+    //-- 중복 호감 표시했을 때 작동되는 수정 처리 로직 --//
+    @GetMapping("/update/{id}")
     @PreAuthorize("isAuthenticated()")
     public String update(
             @PathVariable Long id,
@@ -96,7 +96,7 @@ public class LikeableController {
         likeableService.updateAttractive(likeable, form.getAttractive());
 
         log.info("수정 요청 처리 성공 attractive = {}", likeable.getAttractive());
-        return rq.redirectWithMsg("/instagram/detail/" + likeable.getInstagram().getId(), "효감 포인트가 변경되었습니다.");
+        return rq.redirectWithMsg("/instagram/detail/" + likeable.getInstagram().getId(), "호감 포인트가 변경되었습니다.");
     }
 
     //-- 호감 삭제 --//
