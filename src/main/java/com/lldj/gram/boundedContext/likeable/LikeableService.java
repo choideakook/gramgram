@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +62,20 @@ public class LikeableService {
         }
 
         return RsData.of("F-1", "존재하지 않는 id 입니다.");
+    }
+
+    //-- 중복 호감 여부 확인 --//
+    public boolean duplicateInvalid(List<Instagram> instagramList, String instagramName) {
+        for (Instagram instagram : instagramList)
+            if (instagram.getUsername().equals(instagramName))
+                return false;
+
+        return true;
+    }
+
+    //-- 매력 수정 로직 --//
+    @Transactional
+    public void updateAttractive(Likeable likeable, Integer attractive) {
+        likeable.updateAttractive(attractive);
     }
 }

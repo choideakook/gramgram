@@ -59,4 +59,10 @@ public class Likeable {
             default -> this.attractive = "능력";
         };
     }
+
+    // 매력 update //
+    protected void updateAttractive(Integer attractiveCode) {
+        String attractive = this.attractiveMapper(attractiveCode);
+        this.attractive = attractive;
+    }
 }
