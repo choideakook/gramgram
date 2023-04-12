@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class InitDB {
 
@@ -41,7 +41,7 @@ public class InitDB {
             instagramService.connection("instagramA", "M", member1);
             instagramService.connection("instagramB", "W", member2);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
                 likeableService.like("attractive" + i, 1, member1);
         }
     }

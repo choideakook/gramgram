@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -87,5 +88,20 @@ class LikeableServiceTest {
         RsData<Likeable> likeableRs = likeableService.like("instagram", 1, member);
 
         assertThat(likeableRs.getResultCode()).isEqualTo("F-2");
+    }
+
+    @Test
+    void 호감표시는_최대_10명까지_가능() {
+        Member member = createMember("user");
+        createInstagram("instagram", member);
+
+        for (int i = 0; i < 10; i++)
+            likeableService.like("instagram" + i, 1, member);
+
+        assertThat(member.getLikeableList().size()).isEqualTo(10);
+
+        RsData<Likeable> instagram11 = likeableService.like("Instagram11", 1, member);
+
+        assertThat(instagram11.getResultCode()).isEqualTo("F-3");
     }
 }

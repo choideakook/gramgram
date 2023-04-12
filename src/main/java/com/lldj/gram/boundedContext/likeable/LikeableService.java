@@ -33,6 +33,10 @@ public class LikeableService {
         if (member.getInstagramName().equals(instagramName))
             return RsData.of("F-2", "자기 자신에게 호감표시할 수 없습니다.");
 
+        // 10명까지 호감 표시 가능
+        if(member.getLikeableList().size() >= 10)
+            return RsData.of("F-3", "호감표시는 최대 10명까지 가능합니다.");
+
         // 인스타 이름으로 호감표시 대상 검색
         RsData<Instagram> instagramRs = instagramService.findByName(instagramName);
         Instagram instagram = instagramRs.getData();
