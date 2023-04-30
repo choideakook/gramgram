@@ -1,0 +1,47 @@
+<form th:fragment="loginForm (memberLoginForm)"
+      th:action th:object="${memberLoginForm}" method="post"
+      class="flex flex-col gap-6"
+      onsubmit="JoinForm__submit(this); return false;">
+
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">아이디</span>
+        </label>
+        <input type="text" th:field="*{username}" placeholder="아이디" class="input input-bordered" autofocus/>
+    </div>
+
+    <div class="form-control">
+        <label class="label">
+            <span class="label-text">비빌번호</span>
+        </label>
+        <input type="password" th:field="*{password}" placeholder="비빌번호" class="input input-bordered"/>
+    </div>
+
+    <button class="btn btn-block btn-primary gap-1">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        <span>로그인</span>
+    </button>
+
+    <a href="/oauth2/authorization/kakao"
+       class="btn btn-block gap-1">
+        <i class="fa-solid fa-comment text-[color:#FCE96A]"></i>
+        <span>카카오 로그인</span>
+    </a>
+
+    <a href="/oauth2/authorization/naver"
+       class="btn btn-block gap-1">
+        <i class="fa-solid fa-n text-[color:#2DB400]"></i>
+        <span>네이버 로그인</span>
+    </a>
+
+    <a href="/oauth2/authorization/google"
+       class="btn btn-block gap-1">
+        <i class="fa-brands fa-google text-[color:#ff4000]"></i>
+        <span>구글 로그인</span>
+    </a>
+
+    <a class="btn btn-block gap-1">
+        <i class="fa-brands fa-facebook text-sky-500"></i>
+        <span>페이스북 로그인</span>
+    </a>
+</form>

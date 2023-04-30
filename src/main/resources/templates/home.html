@@ -1,0 +1,11 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>그램그램</title></head>
+
+<div layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+  <h1>GRAMGRAM 에 오신걸 환영합니다.</h1>
+  <div th:if="${@rq.login}"
+       th:text="|로그인 성공 username = ${@rq.member.username}|"></div>
+</div>
+</html>

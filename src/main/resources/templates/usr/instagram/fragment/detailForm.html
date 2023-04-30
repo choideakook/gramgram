@@ -1,0 +1,79 @@
+<div th:fragment="detailForm (instagram)"
+     class="bg-white shadow-md rounded-md">
+
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Instagram
+        </h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+            Instagram 정보를 확인하세요.
+        </p>
+    </div>
+    <div class="border-t border-gray-200">
+        <dl>
+
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    인스타그램 아이디
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="${instagram.username}">
+                </dd>
+            </div>
+
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    성별
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="${instagram.gender}">
+                </dd>
+            </div>
+
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    GRAMGRAM 아이디
+                </dt>
+                <dd th:if="${instagram.memberName ne null}"
+                    class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="${instagram.memberName}">
+                </dd>
+
+                <dd th:if="${instagram.memberName eq null}"
+                    class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="|연동된 아이디가 없습니다.|">
+                </dd>
+            </div>
+
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    매력점수
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    text="준비중입니다.">
+                </dd>
+            </div>
+
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    가입일
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="${#temporals.format(instagram.createDate, 'yyyy년 MM월 dd일')}">
+                </dd>
+            </div>
+
+            <div th:if="${instagram.createDate lt instagram.createDate}"
+                 class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    수정됨
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                    th:text="${#temporals.format(instagram.modifyDate, 'yyyy년 MM월 dd일')}">
+                </dd>
+            </div>
+
+        </dl>
+    </div>
+
+</div>

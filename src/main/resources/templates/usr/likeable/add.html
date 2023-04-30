@@ -1,0 +1,19 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>호감 표시하기</title></head>
+
+<main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+    <script th:replace="~{usr/likeable/fragment/valid :: valid}"></script>
+
+    <div class="max-w-2xl w-full px-4">
+        <h1 class="mb-4">
+            호감 표시하기
+        </h1>
+
+        <form th:replace="~{usr/likeable/fragment/addForm :: addForm(${likeableAddForm})}"></form>
+
+    </div>
+
+</main>
+</html>

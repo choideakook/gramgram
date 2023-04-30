@@ -1,0 +1,45 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>호감 목록</title></head>
+
+<main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+
+    <div class="max-w-2xl w-full px-4">
+        <h1 class="mb-4">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            내가 좋아하는 사람들
+        </h1>
+
+<!-- 호감 목록 시작 -->
+        <div th:if="${likeableList.size() gt 0}">
+            <table th:replace="~{usr/likeable/fragment/listForm :: listForm(${likeableList})}"></table>
+        </div>
+<!-- 호감 목록 종료 -->
+
+        <div th:if="${likeableList.size() eq 0}"
+             class="flex justify-center">
+            좋아하는 사람이 없습니다 ㅜ.ㅜ
+        </div>
+
+        <div class="flex justify-center flex-wrap">
+            <a class="btn btn-link"
+               href="/member/profile">
+                내정보
+            </a>
+
+            <a class="btn btn-link"
+               href="/likeable/add">
+                호감 표시하기
+            </a>
+
+            <a class="btn btn-link"
+               href="#">
+                인스타그램 전체 목록
+            </a>
+        </div>
+
+    </div>
+
+</main>
+</html>

@@ -1,0 +1,37 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+`<head><title>로그인</title></head>`
+
+<main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+    <script th:replace="~{usr/member/fragment/valid :: join}"></script>
+
+    <div class="max-w-2xl w-full px-4">
+        <h1 class="mb-4">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            로그인
+        </h1>
+
+        <form th:replace="~{usr/member/fragment/loginForm :: loginForm(${memberLoginForm})}"></form>
+
+        <div class="flex justify-center flex-wrap">
+            <a class="btn btn-link"
+               href="/member/join">
+                회원가입
+            </a>
+
+            <a class="btn btn-link"
+               href="#">
+                아이디 찾기
+            </a>
+
+            <a class="btn btn-link"
+               href="#">
+                비밀번호 찾기
+            </a>
+        </div>
+
+    </div>
+
+</main>
+</html>

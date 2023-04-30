@@ -1,0 +1,56 @@
+<html layout:decorate="~{layout/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head><title>내정보</title></head>
+
+<main layout:fragment="content" class="flex-grow flex items-center justify-center min-h-screen flex flex-col">
+
+    <h1 class="pb-8">GRAMGRAM 에 오신것을 환영합니다.</h1>
+
+    <div th:if="${@rq.logout}" class="flex flex-col gap-4">
+
+        <a href="/member/login"
+           class="btn btn-block btn-primary gap-1">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>로그인</span>
+        </a>
+
+        <a href="/member/join"
+           class="btn btn-block btn-primary gap-1">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span>회원가입</span>
+        </a>
+
+    </div>
+
+
+    <div th:if="${@rq.login}">
+
+        <form th:replace="~{usr/member/fragment/profileForm :: profileForm}"></form>
+
+        <div class="flex justify-center flex-wrap pt-5">
+            <a th:if="${@rq.member.instagramName ne null}"
+               class="btn btn-link"
+               href="/likeable/add">
+                호감 표시하기
+            </a>
+
+            <a th:if="${@rq.member.instagramName eq null}"
+               class="btn btn-link"
+               href="/instagram/connect">
+                인스타그램 연동
+            </a>
+
+            <a class="btn btn-link"
+               href="/likeable/list">
+                호감 목록 보기
+            </a>
+
+            <a class="btn btn-link"
+               href="#">
+                인스타그램 전체 목록
+            </a>
+        </div>
+    </div>
+
+</main>
+</html>
